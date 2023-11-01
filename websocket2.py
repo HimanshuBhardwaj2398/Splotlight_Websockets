@@ -1,7 +1,6 @@
 import websocket
 # import threading 
 import requests
-
 def on_message(ws, message):
   '''
   Defines the steps that need to be taken once a message is received 

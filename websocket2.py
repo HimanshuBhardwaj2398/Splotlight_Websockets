@@ -12,7 +12,7 @@ def on_message(ws, message):
   # headers = {'Content-Type': 'text/html'}
 #   url = 'https://processingmessage.azurewebsites.net/api/http_trigger'
 #   response = requests.post(url, data=message)
-  print(f'request send,response: {response}')
+  # print(f'request send,response: {response}')
 
 
 def on_error(ws, error):

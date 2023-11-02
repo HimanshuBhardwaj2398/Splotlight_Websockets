@@ -5,6 +5,7 @@ import config
 st.title("Company Manager") 
 companies = config.companies
 
+
 for company in companies:
     st.write(company)
 

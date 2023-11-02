@@ -1,75 +1,34 @@
 import streamlit as st
 import threading
-# from azure_websocket import websocket_azure
+import azure_websocket
+import config
 
-companies = ["Apple", "Google", "Microsoft"] 
+st.title("Company Manager") 
 
-st.title("Websocket App")
+companies = config.companies
 
-if st.button("Update List"):
-    companies = st.text_input("Enter companies separated by commas").title().split(",")
-
-st.write("Updated Companies")
 for company in companies:
     st.write(company)
 
-# Access updated list
-print(companies)
+option = st.selectbox("Select an action", ["", "Add company", "Remove company"])
 
-import websocket2
+if option == "Add company":
+    name = st.text_input("Enter company name")
+    if st.button("Add"):
+        companies.append(name) 
+        config.companies.append(name)
+        st.success("Company added!")
 
-st.title("Websocket App") 
+elif option == "Remove company":
+    name = st.selectbox("Select company to remove", companies)
+    if st.button("Remove"):
+        companies.remove(str(name))
+        config.companies.remove(name)
+        st.success("Company removed!")
+        
+st.button("Refresh list")
 
 # Start websocket in background thread
-threading.Thread(target=websocket2.websocket_azure).start()
+threading.Thread(target=azure_websocket.websocket_azure).start()
 
 
-## running python script
-# import websocket
-# import _thread
-# import time
-# import rel
-# import requests
-# from datetime import datetime
-# from bs4 import BeautifulSoup
-
-# def on_message(ws, message):
-#   '''
-#   Defines the steps that need to be taken once a message is received 
-#   '''
-#   print('-----------------------New Message received-------------------------------------')
-#   print(f'Message received  : {message}')
-
-#   print(type(message))
-#   # headers = {'Content-Type': 'text/html'}
-#   url = 'https://processingmessage.azurewebsites.net/api/http_trigger'
-#   response = requests.post(url, data=message)
-#   print(f'request send,response: {response}')
-
-
-
-
-# def on_error(ws, error):
-#   print(f'-----------------------------------------Error:{error}---------------------')
-
-# def on_close(ws, close_status_code, close_msg):
-#     print("### closed ###")
-
-# def on_open(ws):
-#     print("----------------------------Opened connection-------------------------------")
-
-# def websocket_azure():
-#     websocket.enableTrace(True)
-#     ws = websocket.WebSocketApp("wss://mfn.se/all/s",
-#                               on_open=on_open,
-#                               on_message=on_message,
-#                               on_error=on_error,
-#                               on_close=on_close)
-
-#     ws.run_forever(dispatcher=rel, reconnect=5)  # Set dispatcher to automatic reconnection, 5 second reconnect delay if connection closed unexpectedly
-#     # rel.signal(2, rel.abort)  # Keyboard Interrupt
-#     rel.dispatch()
-
-
-# ## running website
-# websocket_azure()

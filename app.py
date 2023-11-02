@@ -3,7 +3,6 @@ import threading
 import azure_websocket
 import config
 st.title("Company Manager") 
-
 companies = config.companies
 
 for company in companies:

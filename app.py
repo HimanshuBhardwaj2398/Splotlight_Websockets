@@ -2,7 +2,6 @@ import streamlit as st
 import threading
 import azure_websocket
 import config
-
 st.title("Company Manager") 
 
 companies = config.companies

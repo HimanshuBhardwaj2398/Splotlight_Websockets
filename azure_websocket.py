@@ -5,6 +5,7 @@ import rel
 import requests
 from datetime import datetime
 from bs4 import BeautifulSoup
+
 def on_message(ws, message):
   '''
   Defines the steps that need to be taken once a message is received 

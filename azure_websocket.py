@@ -2,6 +2,7 @@ import websocket
 import _thread
 import time
 # import rel
+import logging
 import requests
 from datetime import datetime
 from bs4 import BeautifulSoup
@@ -12,7 +13,7 @@ def on_message(ws, message):
   '''
   print('-----------------------New Message received-------------------------------------')
   print(f'Message received  : {message}')
-
+  logging.info(f'Message received  : {message}')
   print(type(message))
   # headers = {'Content-Type': 'text/html'}
   # url = 'https://processingmessage.azurewebsites.net/api/http_trigger'

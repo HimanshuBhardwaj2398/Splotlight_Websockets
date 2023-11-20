@@ -1,7 +1,7 @@
 import websocket
 import _thread
 import time
-import rel
+# import rel
 import requests
 from datetime import datetime
 from bs4 import BeautifulSoup
